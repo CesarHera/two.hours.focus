@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f7; /* Color de fondo similar a las apps de Apple */
+  transition: background-color 0.5s ease; /* Transición suave para el cambio de color */
+
+}
+
+
+#root {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  
+  .app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.timer {
+  font-size: 72px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.reminder-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.reminder {
+  background-color: #ffffff; /* Fondo blanco similar a las apps de Apple */
+  color: #333;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.checkmark {
+  margin-left: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.start-button {
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: transparent;
+  color: #000000; /* Color del texto ajustado para que sea visible sobre un fondo blanco */
+  border: 2px solid #000000; /* Color del borde ajustado para que sea visible sobre un fondo blanco */
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  /* Fondo animado que se expande al pasar el cursor */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1); /* Color de fondo ajustado para que se perciba sobre un fondo blanco */
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%) scale(0); /* Inicialmente oculto */
+    z-index: -1; /* Coloca el fondo detrás del botón */
+  }
+
+  &:hover::before {
+    transform: translate(-50%, -50%) scale(3); /* Mostrar el fondo al pasar el cursor sobre el botón */
+    opacity: 0.5; /* Opacidad del fondo al pasar el cursor sobre el botón */
+  }
+
+  /* Efecto de sombra */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1); /* Color de sombra ajustado para que se perciba sobre un fondo blanco */
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%) scale(0); /* Inicialmente oculto */
+    z-index: -1; /* Coloca la sombra detrás del botón */
+  }
+
+  &:hover::after {
+    transform: translate(-50%, -50%) scale(1.5); /* Mostrar la sombra al pasar el cursor sobre el botón */
+    opacity: 0.5; /* Opacidad de la sombra al pasar el cursor sobre el botón */
+  }
+
+  &:active::after {
+    transform: translate(-50%, -50%) scale(0); /* Ocultar la sombra cuando el botón está activo */
+  }
+
+  &:hover {
+    color: #ffffff; /* Cambiar el color del texto al pasar el cursor sobre el botón */
+    background-color: #000000; /* Cambiar el color de fondo al pasar el cursor sobre el botón */
+    border-color: #000000; /* Cambiar el color del borde al pasar el cursor sobre el botón */
+  }
+}
