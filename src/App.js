@@ -18,6 +18,19 @@ function App() {
   };
 
   useEffect(() => {
+    window.addEventListener('beforeunload', function (event) {
+      // Cancela el evento de cierre predeterminado para mostrar el mensaje personalizado
+      event.preventDefault();
+      // Mensaje personalizado que se mostrará al intentar cerrar la página
+      event.returnValue = '';
+    });
+  }, [])
+  
+  useEffect(() => {
+    document.title = `${formatTime(time)} Enfoque!`; // Actualizar el título del documento con el tiempo
+  }, [time]); // Este efecto se ejecutará cada vez que 'time' cambie
+
+  useEffect(() => {
     if (started) {
       const timer = setInterval(() => {
         setTime(prevTime => {
@@ -123,5 +136,5 @@ const formatTime = (seconds) => {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const remainingSeconds = seconds % 60;
-  return `${pad(hours)}:${pad(minutes)}:${pad(remainingSeconds)} hrs`;
+  return `${pad(hours)}:${pad(minutes)}:${pad(remainingSeconds)}`;
 }
