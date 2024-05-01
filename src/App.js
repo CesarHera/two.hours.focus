@@ -76,10 +76,14 @@ function App() {
   }, [backgroundColor]);
 
   const handleRepClick = (index) => {
+    console.log("1 Index clicked", index, "repsArr", repsQueue);
+    
     setRepsQueue(prevQueue => prevQueue.map((rep, i) => {
       if (i === index) {
         const newQueue = [...prevQueue];
+        console.log("2 previous newQueue", newQueue);
         newQueue.splice(index, 1); // Eliminar la repetición completada
+        console.log("3 newQueue", newQueue);
         setRepsQueue(newQueue);
         playCompleteSound(); // Reproducir sonido de completado
       }
@@ -113,12 +117,16 @@ function App() {
           <h1>Temporizador de Enfoque</h1>
           <div className="timer">{formatTime(time)}</div>
           <div className="reminder-container">
-            {repsQueue.map((rep, index) => (
-              <div key={index} className="reminder">
-                ¡Hora de hacer 20 repeticiones! - {rep.time.toLocaleTimeString()}
-                <span className="checkmark" onClick={() => handleRepClick(index)}>&#10003;</span>
-              </div>
-            ))}
+            {repsQueue.map((rep, index) => {
+              if(!rep.completed) {
+                return(
+                  <div key={index} className="reminder">
+                    ¡Hora de hacer 20 repeticiones! - {rep.time.toLocaleTimeString()}
+                    <span className="checkmark" onClick={() => handleRepClick(index)}>&#10003;</span>
+                  </div>
+                )
+              }
+            })}
           </div>
         </>
       )}
